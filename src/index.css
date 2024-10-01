@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--middle-yellow-color);
+}
+
+:root {
+  --orange-color: #ff6b00;
+  --light-orange-color: #fa9f5e;
+  --yellow-color: #ffb800;
+  --middle-yellow-color: #ffe8ae;
+  --light-yellow-color: #fff4d9;
+  --brown-color: #8e3b00;
+  --black-color: #000;
+}

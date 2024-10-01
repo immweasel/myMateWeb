@@ -1,0 +1,13 @@
+@media screen and (min-width: 420px){
+    .profile{
+        padding: 63px 15px 0 15px;
+        max-width: 430px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        background-image: url("../../assets/images/bgProfile.png");
+        background-repeat: no-repeat;
+    }
+}
