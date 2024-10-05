@@ -3,8 +3,8 @@ import logo from "./logo.svg";
 import "./App.css";
 import Auth from "./components/Auth/Auth";
 import Profile from "./components/Profile/Profile";
-import BalanceCard from "./components/BalanceCard/BalanceCard";
 import profileImg from "./assets/images/profileImg.png";
+import Balance from "./components/Balance/Balance";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       {/* <div className="App">
         <Auth />
       </div> */}
-      <Profile
+      {/* <Profile
        userImg={profileImg}
        userName="Маркова Анастасия"
        userCity="Москва"
@@ -20,9 +20,9 @@ function App() {
        cntAds="0"
         cntMoney="255"
         cntFavourites="12"
-      />
-      {/* <BalanceCard
-      money={255}/> */}
+      /> */}
+      <Balance
+      money={255}/>
     </>
 
 
