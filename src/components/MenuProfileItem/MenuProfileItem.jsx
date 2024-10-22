@@ -1,6 +1,6 @@
 import "./MenuProfileItem.css"
 
-export default ({title, logo, condition}) => {
+export default ({ title, logo, condition }) => {
     return <a href="#" className="menu-item">
         <div className="menu-item__logo">
             <img src={logo} alt="" />
