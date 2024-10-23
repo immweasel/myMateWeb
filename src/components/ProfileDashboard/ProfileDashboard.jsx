@@ -1,6 +1,6 @@
 import "./ProfileDashboard.css"
 
-export default ({cntAds, cntMoney, cntFavourites}) => {
+export default function ProfileDashboard({ cntAds, cntMoney, cntFavourites }) {
     return <div className="dashboard">
         <div className="dashboard__info">
             <span className="dashboard__info_cnt">
