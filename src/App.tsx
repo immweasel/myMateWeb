@@ -4,6 +4,8 @@ import Profile from "./components/Profile/Profile";
 import profileImg from "./assets/images/profileImg.png";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Chats from "./components/Chats/Chats";
+import Main from "./components/Main/Main";
 
 const userData = {
   profileImg: profileImg,
@@ -19,25 +21,12 @@ function App() {
   return (
     <Router>
       <div>
-        {/* Навигация на всех страницах */}
         <Navigation />
 
-        {/* Маршруты */}
         <Routes>
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                userImg={userData.profileImg}
-                userName={userData.userName}
-                userCity={userData.userCity}
-                userDescription={userData.userDescription}
-                cntAds={userData.cntAds}
-                cntMoney={userData.cntMoney}
-                cntFavourites={userData.cntFavourites}
-              />
-            }
-          />
+          <Route path="/" element={<Main />} />
+          <Route path="/chats" element={<Chats />} />
+          <Route path="/profile" element={<Profile userImg={userData.profileImg} userName={userData.userName} userCity={userData.userCity} userDescription={userData.userDescription} cntAds={userData.cntAds} cntMoney={userData.cntMoney} cntFavourites={userData.cntFavourites} />} />
         </Routes>
       </div>
     </Router>
