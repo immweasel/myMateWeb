@@ -1,5 +1,5 @@
 import "./ProfileInfo.css"
-import arrowRight from "../../assets/icons/rightArrow.png"
+import arrowRight from "../../../assets/icons/rightArrow.png"
 
 export default ({userImg, userName, userCity, userDescription}) => {
     return <div className="user-info">

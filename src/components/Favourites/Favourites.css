@@ -1,0 +1,36 @@
+.favouritesMain {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: calc(100vh - 92px);
+    gap: 24px;
+    align-items: left;
+    justify-content: left;
+    padding: 40px 15px 0 15px;
+}
+
+.favouritesEmptyText {
+    color: #8E3B00;
+    font-size: 19.27px;
+    font-weight: 700;
+    line-height: 23.12px;
+    text-align: left;
+    margin-top: -83px;
+    user-select: none;
+    width: 70%;
+}
+
+.favouritesEmptyImage {
+    width: 246px;
+    height: 394px;
+}
+
+.chatsEmptyColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    width: 100%;
+    height: calc(100vh - 162px);
+    align-items: center;
+    justify-content: flex-end;
+}

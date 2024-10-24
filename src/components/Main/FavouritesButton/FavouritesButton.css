@@ -1,0 +1,12 @@
+.favButtonSmall {
+    position: relative;
+    z-index: 1;
+    margin: 0px 0 0 0;
+    background: none;
+    border: none;
+}
+
+.favButtonBig {
+    background: none;
+    border: none;
+}

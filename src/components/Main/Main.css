@@ -38,6 +38,7 @@
     color: #8E3B00;
     position: relative;
     z-index: 0;
+    font-family: Alegreya Sans;
 }
 
 .mainHeaderSearchInput::placeholder {
@@ -46,7 +47,7 @@
     line-height: 24px;
     text-align: left;
     color: #B8B8B8;
-    font-family: "Alegreya Sans", sans-serif;
+    font-family: Alegreya Sans;
 }
 
 .mainHeaderSearchInput:focus {
@@ -165,19 +166,3 @@
 .mainHeaderSortColumnTop {
     padding-top: 43px;
 }
-
-.mainHeaderSortBlock {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    opacity: 0;
-    transform: translateY(-10px); /* Легкий сдвиг вверх для плавного появления */
-    transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-  }
-  
-  .mainHeaderSortColumnTop .mainHeaderSortBlock {
-    max-height: 200px; /* Определите максимальную высоту */
-    opacity: 1;
-    transform: translateY(0); /* Возвращение на исходное положение */
-  }
-  

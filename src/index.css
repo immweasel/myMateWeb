@@ -23,4 +23,5 @@ body {
 
 .linkNoUnderline {
   text-decoration: none;
+  width: 100%;
 }

@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import './Main.css';
-import searchIcon from "../../assets/icons/search.svg";
 import mainGirlEmpty from "../../assets/images/mainGirlEmpty.png";
 import chatsWindow from "../../assets/images/chatsWindow.svg";
 import sortIcon from "../../assets/icons/sortIcon.svg";
 import checkMark from "../../assets/icons/checkMark.svg";
+import SearchBlock from './SearchBlock/SearchBlock';
 
 interface SortItem {
     text: string;
@@ -17,8 +17,7 @@ const itemSort: SortItem[] = [
 ];
 
 export default function Main() {
-    const [ads, setAds] = useState<any[]>([]);
-    const [search, setSearch] = useState<string>('');
+    const [ads, setAds] = useState<any[]>([]);    
     const [sort, setSort] = useState<string>('alphabetUp');
     const [sortOpen, setSortOpen] = useState<boolean>(false);
 
@@ -43,15 +42,7 @@ export default function Main() {
     return (
         <div className='mainColumn'>
             <div className='mainHeader'>
-                <div className='mainHeaderSearchBlock'>
-                    <input
-                        placeholder='Найти соседа'
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className='mainHeaderSearchInput'
-                    />
-                    <img src={searchIcon} alt="Search" className='mainHeaderSearchIcon' />
-                </div>
+                <SearchBlock />
 
                 <div className={`mainHeaderSortColumn ${sortOpen ? 'mainHeaderSortColumnTop' : ''}`} ref={sortRef}>
                     {!sortOpen

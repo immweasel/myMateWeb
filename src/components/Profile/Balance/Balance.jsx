@@ -1,6 +1,6 @@
 import "./Balance.css"
 import leftArrow from "../../assets/icons/leftArrow.svg"
-import BalanceCard from "../BalanceCard/BalanceCard"
+import BalanceCard from "./BalanceCard/BalanceCard"
 import BalanceImg from "../../assets/images/people.png"
 
 export default ({money}) => {

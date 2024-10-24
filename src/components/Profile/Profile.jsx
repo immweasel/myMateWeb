@@ -1,6 +1,6 @@
-import ProfileInfo from "../ProfileInfo/ProfileInfo";
-import ProfileDashboard from "../ProfileDashboard/ProfileDashboard";
-import MenuProfile from "../MenuProfile/MenuProfile";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import ProfileDashboard from "./ProfileDashboard/ProfileDashboard";
+import MenuProfile from "./MenuProfile/MenuProfile";
 import "./Profile.css"
 
 // eslint-disable-next-line import/no-anonymous-default-export

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Auth.css";
-import CustomInputLogin from "../CustomInputLogin/CustomInputLogin";
+import CustomInputLogin from "./CustomInputLogin/CustomInputLogin";
 import { ReactComponent as EmailSvg } from "../../assets/icons/email.svg";
 import { ReactComponent as PasswordSvg } from "../../assets/icons/password.svg";
 import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";

@@ -6,14 +6,15 @@ interface NavigationItem {
   text: string;
   iconKey: keyof typeof icons;
   link: string;
+  items: string[];
 }
 
 const navigationItems: NavigationItem[] = [
-  { text: 'Главная', iconKey: 'main', link: '/' },
-  { text: 'Избранное', iconKey: 'favourites', link: '/favourites' },
-  { text: 'Объявления', iconKey: 'adsNavigation', link: '/ads' },
-  { text: 'Чаты', iconKey: 'chats', link: '/chats' },
-  { text: 'Профиль', iconKey: 'profile', link: '/profile' },
+  { text: 'Главная', iconKey: 'main', link: '/', items: [] },
+  { text: 'Избранное', iconKey: 'favourites', link: '/favourites', items: [] },
+  { text: 'Объявления', iconKey: 'adsNavigation', link: '/ads', items: [] },
+  { text: 'Чаты', iconKey: 'chats', link: '/chats', items: [] },
+  { text: 'Профиль', iconKey: 'profile', link: '/profile', items: ['/profile/myAds'] },
 ];
 
 export default function Navigation() {
@@ -21,18 +22,22 @@ export default function Navigation() {
 
   return (
     <div className="main">
-      {navigationItems.map((item) => (
-        <Link to={item.link} key={item.link} className="linkNoUnderline">
-          <div className="navigationItem">
-            <img
-              src={location.pathname === item.link ? icons[item.iconKey].default : icons[item.iconKey].gray}
-              alt={item.text}
-              className="navigationItemIcon"
-            />
-            <p className={location.pathname === item.link ? 'navigationItemText' : 'navigationItemTextGray'}>{item.text}</p>
-          </div>
-        </Link>
-      ))}
+      {navigationItems.map((item) => {
+        const isActive = location.pathname === item.link || item.items.includes(location.pathname);
+
+        return (
+          <Link to={item.link} key={item.link} className="linkNoUnderlineNavigation">
+            <div className="navigationItem">
+              <img
+                src={isActive ? icons[item.iconKey].default : icons[item.iconKey].gray}
+                alt={item.text}
+                className="navigationItemIcon"
+              />
+              <p className={isActive ? 'navigationItemText' : 'navigationItemTextGray'}>{item.text}</p>
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 }
