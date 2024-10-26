@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import './Main.css';
 import mainGirlEmpty from "../../assets/images/mainGirlEmpty.png";
+import mainGirlNoAds from "../../assets/images/mainGirlNoAds.png";
 import chatsWindow from "../../assets/images/chatsWindow.svg";
 import sortIcon from "../../assets/icons/sortIcon.svg";
 import checkMark from "../../assets/icons/checkMark.svg";
@@ -16,10 +17,15 @@ const itemSort: SortItem[] = [
     { text: 'По алфавиту (убыв)', state: 'alphabetDown' }
 ];
 
+interface AdItem {
+    title: string;
+}
+
 export default function Main() {
-    const [ads, setAds] = useState<any[]>([]);    
+    const [ads, setAds] = useState<AdItem[]>([]);
     const [sort, setSort] = useState<string>('alphabetUp');
     const [sortOpen, setSortOpen] = useState<boolean>(false);
+    const [search, setSearch] = useState<string>('');
 
     const sortRef = useRef<HTMLDivElement>(null);
 
@@ -39,10 +45,14 @@ export default function Main() {
         };
     }, [sortOpen]);
 
+    const filteredAds = search
+        ? ads.filter(ad => ad.title.toLowerCase().includes(search.toLowerCase()))
+        : ads;
+
     return (
         <div className='mainColumn'>
             <div className='mainHeader'>
-                <SearchBlock />
+                <SearchBlock search={search} setSearch={setSearch} />
 
                 <div className={`mainHeaderSortColumn ${sortOpen ? 'mainHeaderSortColumnTop' : ''}`} ref={sortRef}>
                     {!sortOpen
@@ -66,16 +76,32 @@ export default function Main() {
                 </div>
             </div>
 
-            {ads.length === 0 ? (
-                <div className='mainEmptyColumn'>
-                    <div className='chatsEmptyTextBlock'>
-                        <img src={chatsWindow} alt="No ads window" />
-                        <p className='chatsEmptyText'>Тут еще пусто...</p>
+            {filteredAds.length === 0 ? (
+                search ? (
+                    <div className='mainEmptyColumn'>
+                        <div className='chatsEmptyTextBlock'>
+                            <img src={chatsWindow} alt="No ads window" />
+                            <p className='chatsEmptyText'>Ничего не найдено...</p>
+                        </div>
+                        <img src={mainGirlNoAds} alt="No ads illustration" className='mainEmptyImage' />
                     </div>
-                    <img src={mainGirlEmpty} alt="No ads illustration" className='mainEmptyImage' />
-                </div>
+                ) : (
+                    <div className='mainEmptyColumn'>
+                        <div className='chatsEmptyTextBlock'>
+                            <img src={chatsWindow} alt="No ads window" />
+                            <p className='chatsEmptyText'>Тут еще пусто...</p>
+                        </div>
+                        <img src={mainGirlEmpty} alt="No ads illustration" className='mainEmptyImage' />
+                    </div>
+                )
             ) : (
-                <></>
+                <div className='adsList'>
+                    {filteredAds.map(ad => (
+                        <div key={ad.title} className='adItem'>
+                            <p>{ad.title}</p>
+                        </div>
+                    ))}
+                </div>
             )}
         </div>
     );

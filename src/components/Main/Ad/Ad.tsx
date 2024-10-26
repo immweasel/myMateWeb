@@ -33,6 +33,7 @@ export default function Ad() {
         ageFrom: 0,
         ageTo: 0
     });
+    const [search, setSearch] = useState<string>('');
 
     useEffect(() => {
         load();
@@ -55,7 +56,7 @@ export default function Ad() {
 
     return (
         <div className='adMain'>
-            <SearchBlock />
+            <SearchBlock search={search} setSearch={setSearch} />
             <div className='adContent'>
                 <div className='adSlider'>
                     <AdSlider images={dataAd.images} />

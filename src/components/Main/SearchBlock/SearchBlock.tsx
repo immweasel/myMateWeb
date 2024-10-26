@@ -1,9 +1,11 @@
 import searchIcon from "../../../assets/icons/search.svg";
-import { useState } from "react";
 
-export default function SearchBlock() {
+interface ISearch {
+    search: string;
+    setSearch: (value: string) => void;
+}
 
-    const [search, setSearch] = useState<string>('');
+export default function SearchBlock({ search, setSearch }: ISearch) {
 
     return (
         <div className='mainHeaderSearchBlock'>

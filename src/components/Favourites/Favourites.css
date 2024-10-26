@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     min-height: calc(100vh - 92px);
-    gap: 24px;
+    gap: 55px;
     align-items: left;
     justify-content: left;
     padding: 40px 15px 0 15px;
@@ -25,12 +25,19 @@
     height: 394px;
 }
 
-.chatsEmptyColumn {
+.favourotesEmptyColumn {
     display: flex;
     flex-direction: column;
     gap: 80px;
     width: 100%;
-    height: calc(100vh - 162px);
+    height: calc(100vh - 202px);
     align-items: center;
     justify-content: flex-end;
+}
+
+.favouritesColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
 }
