@@ -4,6 +4,7 @@
     width: 100%;
     gap: 25px;
     min-height: calc(100vh - 92px);
+    padding-bottom: 110px;
 }
 
 .mainHeader {
@@ -165,4 +166,12 @@
 
 .mainHeaderSortColumnTop {
     padding-top: 43px;
+}
+
+.adsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 8px;
+    padding: 0 16px;
 }

@@ -4,14 +4,14 @@
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    gap: 45px;
-    padding-right: 27px;
+    gap: 30px;
+    padding-right: 16px;
 }
 
 .favouriteItemColumn {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 68px);
+    width: calc(100% - 78px);
 }
 
 .favouriteItemTitle {
@@ -34,4 +34,23 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+}
+
+.favouriteItemCover {
+    width: 77.74px;
+    height: 63px;
+    border-radius: 16px;
+}
+
+.favouriteItemLine {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    width: calc(100% - 60px);
+}
+
+.unFavouriteButton {
+    border: none;
+    background: none;
 }

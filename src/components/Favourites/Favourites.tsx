@@ -4,6 +4,7 @@ import favouritesMan from "../../assets/images/favouritesMan.png";
 import chatsWindow from "../../assets/images/chatsWindow.svg";
 import { FavouritesInterface } from './interfaces/interfaces';
 import FavouriteItem from './FavouriteItem/FavouriteItem';
+import adAppartment1 from "../../assets/images/adAppartment1.png";
 
 export default function Favourites() {
 
@@ -14,7 +15,7 @@ export default function Favourites() {
     }, []);
 
     const load = async () => {
-        setFavourites([{ id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт' }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт' }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт' }]);
+        setFavourites([{ id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1 }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }]);
     };
 
     return (
@@ -29,7 +30,7 @@ export default function Favourites() {
                     <img src={favouritesMan} alt="No chats illustration" className='favouritesEmptyImage' />
                 </div>
                 : <div className='favouritesColumn'>
-                    {favourites.map(item => <FavouriteItem id={item.id} title={item.title} subtitle={item.subtitle} />)}
+                    {favourites.map(item => <FavouriteItem id={item.id} title={item.title} subtitle={item.subtitle} cover={item.cover} />)}
                 </div>}
         </div>
     );

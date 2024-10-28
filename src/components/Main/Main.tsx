@@ -6,6 +6,7 @@ import chatsWindow from "../../assets/images/chatsWindow.svg";
 import sortIcon from "../../assets/icons/sortIcon.svg";
 import checkMark from "../../assets/icons/checkMark.svg";
 import SearchBlock from './SearchBlock/SearchBlock';
+import AdCard from './AdCard/AdCard';
 
 interface SortItem {
     text: string;
@@ -17,12 +18,13 @@ const itemSort: SortItem[] = [
     { text: 'По алфавиту (убыв)', state: 'alphabetDown' }
 ];
 
-interface AdItem {
+interface IAds {
+    id: string;
     title: string;
 }
 
 export default function Main() {
-    const [ads, setAds] = useState<AdItem[]>([]);
+    const [ads, setAds] = useState<IAds[]>([]);
     const [sort, setSort] = useState<string>('alphabetUp');
     const [sortOpen, setSortOpen] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
@@ -30,6 +32,7 @@ export default function Main() {
     const sortRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        load();
         function handleClickOutside(event: MouseEvent) {
             if (sortRef.current && !sortRef.current.contains(event.target as Node)) {
                 setSortOpen(false);
@@ -44,6 +47,10 @@ export default function Main() {
             document.removeEventListener('mousedown', handleClickOutside);
         };
     }, [sortOpen]);
+
+    const load = async () => {
+        setAds([{ id: '1', title: '345' }, { id: '2', title: '456' }, { id: '3', title: '567' }, { id: '4', title: '678' }, { id: '5', title: '890' },{ id: '6', title: '0000' }]);
+    };
 
     const filteredAds = search
         ? ads.filter(ad => ad.title.toLowerCase().includes(search.toLowerCase()))
@@ -96,10 +103,8 @@ export default function Main() {
                 )
             ) : (
                 <div className='adsList'>
-                    {filteredAds.map(ad => (
-                        <div key={ad.title} className='adItem'>
-                            <p>{ad.title}</p>
-                        </div>
+                    {filteredAds.map((item: IAds) => (
+                        <AdCard key={item.id} id={item.id} />
                     ))}
                 </div>
             )}
