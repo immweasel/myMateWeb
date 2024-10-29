@@ -87,3 +87,7 @@
     user-select: none;
     width: 52%;
 }
+
+.linkNoUnderlineCreate {
+    text-decoration: none;
+}

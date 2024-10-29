@@ -3,6 +3,7 @@ import TopWithArrow from '../Common/TopWithArrow';
 import myAdsWindow from "../../../assets/images/myAdsWindow.svg";
 import myAdsMan from "../../../assets/images/myAdsMan.png";
 import './MyAds.css';
+import { Link } from 'react-router-dom';
 
 interface AdInterface {
     id: number;
@@ -19,7 +20,9 @@ export default function MyAds() {
             <div className='myAdsContent'>
                 <div className='myAdsContentHeader'>
                     <p className='myAdsContentHeaderTitle'>Мои объявления</p>
-                    <button className='myAdsContentHeaderButton'>Создать</button>
+                    <Link to='createAds' className='linkNoUnderlineCreate' >
+                        <button className='myAdsContentHeaderButton'>Создать</button>
+                    </Link>
                 </div>
                 {ads.length === 0
                     ? <div className='myAdsEmptyColumn'>
