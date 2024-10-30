@@ -11,6 +11,7 @@ import Ad from "./components/Main/Ad/Ad";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CreateAds from "./components/Profile/CreateAds/CreateAds";
+import PersonalData from "./components/Profile/PersonalData/PersonalData";
 
 const userData = {
   profileImg: profileImg,
@@ -37,6 +38,7 @@ function App() {
           <Route path="/profile/myAds" element={<MyAds />} />
           <Route path="/ad/:id" element={<Ad />} />
           <Route path="/profile/myAds/createAds" element={<CreateAds />} />
+          <Route path="/profile/personalData" element={<PersonalData />} />
         </Routes>
       </div>
     </Router>
