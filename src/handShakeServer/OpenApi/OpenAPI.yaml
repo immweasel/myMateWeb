@@ -1,0 +1,636 @@
+openapi: 3.0.3
+info:
+  title: Мой Товарищ
+  description: API для Мой Товарищ, платформы для поиска соседей по комнате.
+  version: 1.0.0
+
+servers:
+  - url: https://api.my-comrade.ru/
+    description: Production API сервер
+
+paths:
+  /v1/auth/vk:
+    get:
+      description: Запускает процесс авторизации пользователя
+      responses:
+        '200':
+          description: Аутентификация успешно начата
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auth_id:
+                    description: ID авторизации нужен для обмена кода авторизации
+                    type: string
+                  code_challenge:
+                    description: PKCE code challenge
+                    type: string
+                  state:
+                    description: Непрозрачное значение, используемое клиентом для поддержания состояния между запросом и обратным вызовом.
+                    type: string
+                  scopes:
+                    description: Запрашиваемые права доступа
+                    type: string
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+  /v1/auth/vk/exchange-code:
+    post:
+      summary: Обмен VK authorization code на access token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: string
+                  description: VK authorization code
+                device_id:
+                  type: string
+                  description: Идентификатор устройства пользователя
+                auth_id:
+                  type: string
+                  description: Идентификатор авторизации
+                state:
+                  type: string
+                  description: Строка состояния
+              required:
+                - code
+                - device_id
+                - state
+      responses:
+        '200':
+          description: Access token успешно получен
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+  /v1/auth/logout:
+    post:
+      summary: Выйти из текущей учетной записи
+      parameters:
+        - name: access_token
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Успешный выход
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+  /v1/user/:
+    post:
+      summary: Создать нового пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Пользователь успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+  /v1/user/{user_id}:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: access_token
+        in: query
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Получить данные пользователя
+      responses:
+        '200':
+          description: Данные пользователя успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    patch:
+      summary: Обновить данные пользователя
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Данные пользователя успешно обновлены
+        '404':
+          description: Пользователь не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    delete:
+      summary: Удалить пользователя
+      responses:
+        '204':
+          description: Пользователь успешно удален
+        '404':
+          description: Пользователь не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+  /v1/user/{user_id}/conversations:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      summary: Получить беседы пользователя
+      responses:
+        '200':
+          description: Список бесед успешно получен
+        '404':
+          description: Пользователь не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+  /v1/user/{user_id}/conversation/{conversation_id}:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      summary: Получить данные определенной беседы
+      responses:
+        '200':
+          description: Данные беседы успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Беседа не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      summary: Создать новую беседу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '201':
+          description: Беседа успешно создана
+    patch:
+      summary: Обновить беседу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Message'
+      responses:
+        '200':
+          description: Беседа успешно обновлена
+        '404':
+          description: Беседа не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    delete:
+      summary: Удалить беседу
+      responses:
+        '204':
+          description: Беседа успешно удалена
+        '404':
+          description: Беседа не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+  /v1/user/{user_id}/conversation/{conversation_id}/messages:
+    parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+    get:
+      summary: Получить все сообщения в беседе
+      responses:
+        '200':
+          description: Список сообщений успешно получен
+        '404':
+          description: Беседа не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+  /v1/ad/:
+    parameters:
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: access_token
+        in: query
+        required: true
+        schema:
+          type: string
+    post:
+      summary: Создать новое объявление
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ad'
+      responses:
+        '201':
+          description: Объявление успешно создано
+  /v1/ad/{ad_id}:
+    parameters:
+      - name: ad_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: access_token
+        in: query
+        required: true
+        schema:
+          type: string
+    get:
+      summary: Получить данные объявления
+      responses:
+        '200':
+          description: Данные объявления успешно получены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ad'
+        '404':
+          description: Объявление не найдено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    patch:
+      summary: Обновить данные объявления
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ad'
+      responses:
+        '200':
+          description: Данные объявления успешно обновлены
+        '404':
+          description: Объявление не найдено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    delete:
+      summary: Удалить объявление
+      responses:
+        '204':
+          description: Объявление успешно удалено
+        '404':
+          description: Объявление не найдено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Неавторизован
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '400':
+          description: Неверный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+  /v1/ad/{id}/archivate:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: user_id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: access_token
+        in: query
+        required: true
+        schema:
+          type: string
+    delete:
+      summary: Архивировать объявление
+      responses:
+        '204':
+          description: Объявление успешно архивировано
+        '404':
+          description: Объявление не найдено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+  /v1/ads:
+    parameters:
+      - name: filter
+        in: query
+        description: Фильтр объявлений на основе критериев
+        required: false
+        schema:
+          type: object
+          additionalProperties: false
+          properties:
+            city:
+              type: string
+            district:
+              type: string
+            gender:
+              type: string
+            age_requirements:
+              type: integer
+    get:
+      summary: Получить список объявлений
+      responses:
+        '200':
+          description: Список объявлений успешно получен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ad'
+        '404':
+          description: Объявления не найдены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+
+components:
+  schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          example: 123
+        surname:
+          type: string
+          example: Doe
+        name:
+          type: string
+          example: John
+        photo:
+          type: string
+        gender:
+          type: string
+          example: male
+        DateOfBirth:
+          type: string
+          format: date
+          example: '2023-08-28'
+    Message:
+      type: object
+      properties:
+        message_id:
+          type: integer
+          example: 456
+        sender_id:
+          type: integer
+          example: 123
+        content:
+          type: string
+          example: Привет! Как дела?
+        timestamp:
+          type: string
+          format: date-time
+          example: '2023-08-28T15:04:05Z'
+    Ad:
+      type: object
+      properties:
+        ad_id:
+          type: integer
+          example: 789
+        title:
+          type: string
+          example: Ищу соседа по комнате
+        description:
+          type: string
+          example: Квартира в центре города, ищу тихого соседа.
+        location:
+          type: string
+          example: Москва, Тверской район
+        price:
+          type: number
+          format: float
+          example: 15000.00
