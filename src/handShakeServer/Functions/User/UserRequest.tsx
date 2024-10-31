@@ -1,72 +1,24 @@
+import { IData } from "../../Models/MyModels/DataSchema";
+import { IGeneralError } from "../../Models/OpenApiModels/GeneralErrorSchema";
+import { IMessage } from "../../Models/OpenApiModels/MessageSchema";
+import { IUser } from "../../Models/OpenApiModels/UserSchema";
 import { URL } from "../URL/URL";
 
-interface IError {
-    code: number,
-    message: string,
-}
+const CreateUserPOST = async ({ user_id, surname, name, photo, gender, DateOfBirth }: IUser) => {
+    const DOMEN: string = URL + '/v1/user/';
 
-interface IData {
-    code: number,
-    data: object,
-}
-
-
-const AuthentificationVKGET = async () => {
-    const DOMEN: string = URL + '/v1/auth/vk';
-
-    interface IAuth {
-        auth_id: string,
-        code_challenge: string,
-        state: string,
-        scopes: string,
+    const body: IUser = {
+        user_id,
+        surname,
+        name,
+        photo,
+        gender,
+        DateOfBirth
     }
 
     let request = await fetch(DOMEN, {
-        method: "GET",
+        method: "POST",
         mode: "no-cors",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    if (request.ok) {
-        let data: IAuth = await request.json();
-        let response: IData = {
-            code: request.status,
-            data,
-        };
-
-        return response;
-    } else {
-        let error: IError = {
-            code: request.status,
-            message: request.statusText,
-        }
-
-        return error;
-    }
-}
-
-const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: string, device_id: string, auth_id?: string, state: string}) => {
-    const DOMEN: string = URL + '/v1/auth/vk/exchange-code';
-
-    interface IBody {
-        code: string,
-        device_id: string,
-        auth_id?: string,
-        state: string
-    }
-
-    const body: IBody = {
-        code,
-        device_id,
-        auth_id,
-        state 
-    }
-
-    let request = await fetch(DOMEN, {
-        method: "POST", 
-        mode: "no-cors", 
         headers: {
             "Content-Type": "application/json",
         },
@@ -74,7 +26,7 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
     });
 
     if (request.ok) {
-        let data: {access_token: string} = await request.json();
+        let data: IUser = await request.json();
         let response: IData = {
             code: request.status,
             data,
@@ -82,7 +34,7 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
 
         return response;
     } else {
-        let error: IError = {
+        let error: IGeneralError = {
             code: request.status,
             message: request.statusText,
         }
@@ -91,12 +43,12 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
     }
 }
 
-const LogoutVKPOST = async (access_token: string) => {
-    const DOMEN: string = URL + `/v1/auth/logout?access_token=${access_token}`;
+const GetUserDataGET = async (access_token: string, user_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}?access_token=${access_token}`;
 
     let request = await fetch(DOMEN, {
-        method: "POST", 
-        mode: "no-cors", 
+        method: "GET",
+        mode: "no-cors",
         headers: {
             "Content-Type": "application/json",
         },
@@ -104,7 +56,7 @@ const LogoutVKPOST = async (access_token: string) => {
     });
 
     if (request.ok) {
-        let data: {message: string} = {message: "OK"};
+        let data: IUser = await request.json();
         let response: IData = {
             code: request.status,
             data,
@@ -112,7 +64,7 @@ const LogoutVKPOST = async (access_token: string) => {
 
         return response;
     } else {
-        let error: IError = {
+        let error: IGeneralError = {
             code: request.status,
             message: request.statusText,
         }
@@ -121,4 +73,271 @@ const LogoutVKPOST = async (access_token: string) => {
     }
 }
 
-export { AuthentificationVKGET, ExchangeTokenVKPOST, LogoutVKPOST };
+const RefreshUserDataPATCH = async (access_token: string, user_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}?access_token=${access_token}`;
+
+    let request = await fetch(DOMEN, {
+        method: "PATCH",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: { message: string } = { message: 'OK' };
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+const DeleteUserAccountDELETE = async (access_token: string, user_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}?access_token=${access_token}`;
+
+    let request = await fetch(DOMEN, {
+        method: "DELETE",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: { message: string } = { message: 'OK' };
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+ // recoding response data!!!
+const GetUserChatsGET = async (user_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversations`;
+
+    let request = await fetch(DOMEN, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: { message: string } = { message: 'OK' };
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+ // recoding body!!!
+const GetUserMessageGET = async (user_id: number, conversation_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversation/${conversation_id}`;
+
+    let request = await fetch(DOMEN, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: IMessage = await request.json(); 
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+ // recoding body!!!
+const CreateUserChatPOST = async (user_id: number, conversation_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversation/${conversation_id}`;
+
+    let body: IMessage = {
+        message_id: 0,
+        sender_id: 0,
+        content: '',
+        timestamp: ''
+    }
+
+    let request = await fetch(DOMEN, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+
+    if (request.ok) {
+        let data: {message: string} = {message: 'OK'}; 
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+ // recoding body!!!
+const RefreshUserChatPATCH = async (user_id: number, conversation_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversation/${conversation_id}`;
+
+    let body: IMessage = {
+        message_id: 0,
+        sender_id: 0,
+        content: '',
+        timestamp: ''
+    }
+
+    let request = await fetch(DOMEN, {
+        method: "PATCH",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+
+    if (request.ok) {
+        let data: {message: string} = {message: 'OK'}; 
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+
+const DeleteUserChatDELETE = async (user_id: number, conversation_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversation/${conversation_id}`;
+
+    let body: IMessage = {
+        message_id: 0,
+        sender_id: 0,
+        content: '',
+        timestamp: ''
+    }
+
+    let request = await fetch(DOMEN, {
+        method: "DELETE",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+
+    if (request.ok) {
+        let data: {message: string} = {message: 'OK'}; 
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+ // recoding body!!!
+const GetAllMessagesGET = async (user_id: number, conversation_id: number) => {
+    const DOMEN: string = URL + `/v1/user/${user_id}/conversation/${conversation_id}/messages`;
+
+    let request = await fetch(DOMEN, {
+        method: "GET",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: {message: string} = {message: 'OK'}; 
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IGeneralError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+export { CreateUserPOST, GetUserDataGET, RefreshUserDataPATCH, DeleteUserAccountDELETE, GetUserChatsGET, GetUserMessageGET, CreateUserChatPOST, RefreshUserChatPATCH, DeleteUserChatDELETE, GetAllMessagesGET };
