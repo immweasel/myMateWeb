@@ -5,6 +5,12 @@ interface IError {
     message: string,
 }
 
+interface IData {
+    code: number,
+    data: object,
+}
+
+
 const AuthentificationVKGET = async () => {
     const DOMEN: string = URL + '/v1/auth/vk';
 
@@ -25,7 +31,7 @@ const AuthentificationVKGET = async () => {
 
     if (request.ok) {
         let data: IAuth = await request.json();
-        let response = {
+        let response: IData = {
             code: request.status,
             data,
         };
@@ -51,13 +57,12 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
         state: string
     }
 
-    let body: IBody = {
+    const body: IBody = {
         code,
         device_id,
         auth_id,
         state 
     }
-
 
     let request = await fetch(DOMEN, {
         method: "POST", 
@@ -70,7 +75,7 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
 
     if (request.ok) {
         let data: {access_token: string} = await request.json();
-        let response = {
+        let response: IData = {
             code: request.status,
             data,
         };
@@ -86,5 +91,34 @@ const ExchangeTokenVKPOST = async ({code, device_id, auth_id, state} : {code: st
     }
 }
 
+const LogoutVKPOST = async (access_token: string) => {
+    const DOMEN: string = URL + `/v1/auth/logout?access_token=${access_token}`;
 
-export { AuthentificationVKGET, ExchangeTokenVKPOST };
+    let request = await fetch(DOMEN, {
+        method: "POST", 
+        mode: "no-cors", 
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: '',
+    });
+
+    if (request.ok) {
+        let data: {message: string} = {message: "OK"};
+        let response: IData = {
+            code: request.status,
+            data,
+        };
+
+        return response;
+    } else {
+        let error: IError = {
+            code: request.status,
+            message: request.statusText,
+        }
+
+        return error;
+    }
+}
+
+export { AuthentificationVKGET, ExchangeTokenVKPOST, LogoutVKPOST };
