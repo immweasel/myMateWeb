@@ -21,7 +21,7 @@ interface PersonalDataType {
 };
 
 const statusOptions = ['Учусь', 'Поступаю', 'Работаю'];
-const courseOptions = ['Бакалавриата', 'Магистратура', 'Аспирантура'];
+const courseOptions = ['Бакалавриат', 'Магистратура', 'Аспирантура'];
 
 export default function PersonalData() {
     const [statusOpen, setStatusOpen] = useState(false);
