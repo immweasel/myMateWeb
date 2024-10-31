@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import SearchBlock from '../SearchBlock/SearchBlock';
 import adAppartment1 from "../../../assets/images/adAppartment1.png";
 import adAppartment2 from "../../../assets/images/adAppartment2.png";
 import './Ad.css';
 import FavouritesButton from '../FavouritesButton/FavouritesButton';
 import AdCard from '../AdCard/AdCard';
 import AdSlider from './AdSlider/AdSlider';
+import backArrowLight from "../../../assets/icons/backArrowLight.svg";
+import { Link, useLocation } from 'react-router-dom';
 
 interface DataAd {
     title: string;
@@ -33,7 +34,9 @@ export default function Ad() {
         ageFrom: 0,
         ageTo: 0
     });
-    const [search, setSearch] = useState<string>('');
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const page = queryParams.get('page');
 
     useEffect(() => {
         load();
@@ -54,9 +57,22 @@ export default function Ad() {
         });
     };
 
+    function selectBackLink() {
+        switch (page) {
+            case 'favourites':
+                return '/favourites'
+            default:
+                return '/';
+        };
+    };
+
     return (
         <div className='adMain'>
-            <SearchBlock search={search} setSearch={setSearch} />
+            <div className='adBackHeader'>
+                <Link to={selectBackLink()}>
+                    <img alt='' src={backArrowLight} />
+                </Link>
+            </div>
             <div className='adContent'>
                 <div className='adSlider'>
                     <AdSlider images={dataAd.images} />

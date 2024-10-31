@@ -21,7 +21,7 @@ interface PersonalDataType {
 };
 
 const statusOptions = ['Учусь', 'Поступаю', 'Работаю'];
-const courseOptions = ['1 курс бакалавриата', '2 курс бакалавриата', '3 курс бакалавриата', '4 курс бакалавриата', '1 курс магистратуры', '2 курс магистратуры'];
+const courseOptions = ['Бакалавриата', 'Магистратура', 'Аспирантура'];
 
 export default function PersonalData() {
     const [statusOpen, setStatusOpen] = useState(false);
@@ -141,8 +141,7 @@ export default function PersonalData() {
                     <input
                         className="persondalDataInput"
                         name="city"
-                        value={personalData.city}
-                        onChange={handleInputChange}
+                        value='Москва'
                     />
                 </div>
 
