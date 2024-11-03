@@ -1,5 +1,5 @@
 /* @media screen and (max-width: 430px){ */
-    .balance{
+    /*.balance{
         display: flex;
         flex-direction: column;
         max-width: 430px;
@@ -13,14 +13,27 @@
         align-items: center;
         height: 100vh;
     }
+    */
+.balance{
+    display: flex;
+    flex-direction: column;
+    max-width: 430px;
+    margin: auto;
+    padding: 77px 50px 0 50px;
+    background-image: url("../../assets/images/bg.png");
+    background-repeat: no-repeat;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
 
-    .balance__arrow{
-        position: absolute;
-        top: 30px;
-        left: 16px;
-    }
+.balance__arrow{
+    position: absolute;
+    top: 30px;
+    left: 16px;
+}
 
-    .balance__img{
-        position: absolute;
-        bottom: 0;
-    }
+.balance__img{
+    position: absolute;
+    bottom: 0;
+}

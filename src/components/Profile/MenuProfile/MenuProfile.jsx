@@ -1,23 +1,19 @@
 import "./MenuProfile.css";
 import MenuProfileItem from "./MenuProfileItem/MenuProfileItem";
-import logoBalance from "../../../assets/icons/balance.svg";
 import logoUser from "../../../assets/icons/user.svg";
-import logoPromotion from "../../../assets/icons/promotion.svg";
 import logoAds from "../../../assets/icons/ads.svg";
-import logoPush from "../../../assets/icons/push.svg";
+import helpButton from "../../../assets/icons/obrsvaz.svg";
 import logoColor from "../../../assets/icons/color.svg";
 import logoHelp from "../../../assets/icons/help.svg";
 import logoExit from "../../../assets/icons/exit.svg";
 
 const menuItems = [
-  { title: 'Баланс', icon: logoBalance, link: 'profile/balance' },
-  { title: 'Личные данные', icon: logoUser, link: 'profile/personalData' },
-  { title: 'Мои объявления', icon: logoAds, link: 'profile/myAds' },
-  { title: 'Продвижение', icon: logoPromotion, link: 'profile/promotion' },
-  { title: 'Push-уведомления', icon: logoPush, link: 'profile/push' },
-  { title: 'Цвет темы', icon: logoColor, link: 'profile/themeColor' },
-  { title: 'Помощь', icon: logoHelp, link: 'profile/support' },
-  { title: 'Выйти из аккаунта', icon: logoExit, link: 'profile/logOut' }
+  { title: 'Личные данные', icon: logoUser, link: '/profile/personalData' },
+  { title: 'Мои объявления', icon: logoAds, link: '/profile/myAds' },
+  { title: 'Цвет темы', icon: logoColor, link: '/profile/themeColor' },
+  { title: 'Помощь', icon: logoHelp, link: '/profile/support' },
+  { title: 'Обратная связь', icon: helpButton, link: '/profile/returnsup' },
+  { title: 'Выйти из аккаунта', icon: logoExit, link: '/profile/logOut' }
 ];
 
 export default function MenuProfile() {

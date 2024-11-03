@@ -12,6 +12,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import CreateAds from "./components/Profile/CreateAds/CreateAds";
 import PersonalData from "./components/Profile/PersonalData/PersonalData";
+import Supporting from "./components/Profile/Help/Help";
+import Balance from "./components/Profile/Balance/Balance.jsx";
+import ReturnSup from "./components/Profile/Sup.jsx";
+/*
+import Promotion from "./components/Ads/Ads";
+import Support from "./components/Ads/Ads";
+import ThemeColor from "./components/Ads/Ads";
+import LogOut from "./components/Ads/Ads";
+*/
 
 const userData = {
   profileImg: profileImg,
@@ -36,6 +45,19 @@ function App() {
           <Route path="/chats" element={<Chats />} />
           <Route path="/profile" element={<Profile userImg={userData.profileImg} userName={userData.userName} userCity={userData.userCity} userDescription={userData.userDescription} cntAds={userData.cntAds} cntMoney={userData.cntMoney} cntFavourites={userData.cntFavourites} />} />
           <Route path="/profile/myAds" element={<MyAds />} />
+
+
+          <Route path="/profile/balance" element={<Balance money="" />} />
+          <Route path="/profile/support" element={<Supporting />} />
+          <Route path="/profile/returnsup" element={<ReturnSup Obr="" formLink={"https://forms.yandex.ru/u/6723b7ad73cee78f6876e5eb/"}/>} />
+          {/*
+          <Route path="/profile/promotion" element={<Promotion />} />
+          <Route path="/profile/support" element={<Support />} />
+          пока не ясно куда ведет
+          <Route path="/profile/themeColor" element={<ThemeColor />} />
+          <Route path="/profile/logOut" element={<LogOut />} />
+          */}
+
           <Route path="/ad/:id" element={<Ad />} />
           <Route path="/profile/myAds/createAds" element={<CreateAds />} />
           <Route path="/profile/personalData" element={<PersonalData />} />

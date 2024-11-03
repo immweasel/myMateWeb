@@ -9,6 +9,7 @@
 body {
   background-color: var(--middle-yellow-color);
   font-family: "Alegreya Sans", sans-serif;
+  position: relative;
 }
 
 :root {
