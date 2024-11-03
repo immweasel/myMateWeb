@@ -14,7 +14,7 @@ import CreateAds from "./components/Profile/CreateAds/CreateAds";
 import PersonalData from "./components/Profile/PersonalData/PersonalData";
 import Supporting from "./components/Profile/Help/Help";
 import Balance from "./components/Profile/Balance/Balance.jsx";
-import ReturnSup from "./components/Profile/Sup.jsx";
+import ReturnSup from "./components/Profile/ReturnSup.jsx";
 /*
 import Promotion from "./components/Ads/Ads";
 import Support from "./components/Ads/Ads";
