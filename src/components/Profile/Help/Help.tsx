@@ -23,17 +23,25 @@ export default function MyAds() {
                     <p className='myAdsContentHeaderTitle'>Помощь</p>
                 </div>
                 
-                <div className='QR'>
-                    <img src={QRVK}  width=" 122" height=" 120"></img>
-                    <a href='https://vk.com/moitovarish' className='linkNoUnderlineCreate' >
-                        <button className='myAdsContentHeaderButton'>Перейти в группу Вк</button>
-                    </a>
+                <div className='myAdsContentHeader'>
+                    <div className='myAdsContentHeaderTitle'>
+                        <div className='QR'>
+                            <img src={QRVK}  width=" 122" height=" 120"></img>
+                            <a href='https://vk.com/moitovarish' className='linkNoUnderlineCreate' >
+                                <button className='myAdsContentHeaderButton'>Перейти в группу Вк</button>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div className='Names'>
-                    <p>Или вы можете связаться с нами <br></br>по почте:</p>
-                    <p><b>тут_наш_адрес_почты@почта.ру</b></p>
-                </div>
+                        <p>Или вы можете связаться с нами <br></br>по почте:</p>
+                    </div>
+                
+                <div className='Nams'>
+                        <p><b>тут_наш_адрес_почты@почта.ру</b></p>
+                    </div>
 
                  <div className='myAdsEmptyColumn'>
                     <img src={mySupGirl} alt="No chats illustration" className='myAdsEmptyImage' />

@@ -15,6 +15,7 @@
     padding: 30px 0 0 0;
     position: relative;
     min-height: calc(100vh - 177px);
+    gap: 45px;
 }
 
 .myAdsContentHeader {
@@ -57,7 +58,7 @@
     width: 320.34px;
     height: 300.03px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 10px;
 }
 
 .myAdsEmptyColumn {
@@ -96,6 +97,7 @@
 .QR {
     display: flex;
     align-items: center;
+    gap: 21px;
 }
 
 .Names {
@@ -103,4 +105,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
+    width: 329px; height: 48px;
+}
+
+.Nams {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 332px; height: 29px;
 }
