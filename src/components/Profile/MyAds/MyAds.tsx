@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import TopWithArrow from '../Common/TopWithArrow';
 import myAdsWindow from "../../../assets/images/myAdsWindow.svg";
-import myAdsMan from "../../../assets/images/myAdsMan.png";
+// import myAdsMan from "../../../assets/images/myAdsMan.png";
+import myAdsMan2 from "../../../assets/images/myAdsMan2.png";
+
 import './MyAds.css';
 import { Link } from 'react-router-dom';
 
@@ -31,13 +33,7 @@ export default function MyAds() {
                     </Link>
                 </div>
                 {ads.length === 0
-                    ? <div className='myAdsEmptyColumn'>
-                        <div className='myAdsEmptyTextBlock'>
-                            <img src={myAdsWindow} alt="No chats window" />
-                            <p className='myAdsEmptyText'>Объявлений нет. Создадим новое?</p>
-                        </div>
-                        <img src={myAdsMan} alt="No chats illustration" className='myAdsEmptyImage' />
-                    </div>
+                    ? <img src={myAdsMan2} alt="No chats illustration" className='myAdsEmptyImage' />
                     : <></>}
             </div>
             

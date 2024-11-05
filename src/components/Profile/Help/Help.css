@@ -1,12 +1,12 @@
-.mainMyAds {
+.mainHelp {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
-    padding: 77px 16px 0 16px;
+    padding: 77px 16px 100px 16px;
 }
 
-.myAdsContent {
+.myHelpContent {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -14,11 +14,13 @@
     border-radius: 16px;
     padding: 30px 0 0 0;
     position: relative;
-    min-height: calc(100vh - 177px);
+    /*min-height: calc(100vh - 177px);*/
+    width: 398px;
+    height: 755px;
     gap: 45px;
 }
 
-.myAdsContentHeader {
+.myHelpContentHeader {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -27,7 +29,7 @@
     padding: 0 30px;
 }
 
-.myAdsContentHeaderTitle {
+.myHelpContentHeaderTitle {
     font-family: Alegreya Sans;
     font-size: 32px;
     font-weight: 700;
@@ -36,7 +38,34 @@
     color: #8E3B00;
 }
 
-.myAdsContentHeaderButton {
+.QR {
+    display: flex;
+    align-items: center;
+    gap: 67px;
+}
+
+.Names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 329px; 
+    height: 48px;
+    font-size: 20px;
+}
+
+.Nams {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 332px; 
+    height: 29px;
+    font-size: 24px;
+    margin: 0 auto;
+}
+
+.myHelpContentHeaderButton {
     width: max-content;
     height: auto;
     padding: 8px 16px;
@@ -54,14 +83,7 @@
     color: #FFF4D9;
 }
 
-.myAdsEmptyImage {
-    width: 320.34px;
-    height: 300.03px;
-    margin: auto;
-    margin-top: 10px;
-}
-
-.myAdsEmptyColumn {
+.myHelpEmptyColumn {
     display: flex;
     flex-direction: column;
     gap: 80px;
@@ -71,47 +93,16 @@
     justify-content: flex-end;
 }
 
-.myAdsEmptyTextBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-left: 75px;
-}
+/* .myHelpEmptyImage {
+    width: 320.34px;
+    height: 300.03px;
+    margin: auto;
+    margin-top: 43px;
+} */
 
-.myAdsEmptyText {
-    color: #8E3B00;
-    font-size: 19.27px;
-    font-weight: 700;
-    line-height: 23.12px;
-    text-align: left;
-    margin-top: -83px;
-    user-select: none;
-    width: 52%;
-}
-
-.linkNoUnderlineCreate {
+.linkNolineCreate {
     text-decoration: none;
 }
 
-.QR {
-    display: flex;
-    align-items: center;
-    gap: 21px;
-}
 
-.Names {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    width: 329px; height: 48px;
-}
 
-.Nams {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    width: 332px; height: 29px;
-}

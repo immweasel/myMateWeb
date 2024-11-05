@@ -16,19 +16,19 @@ export default function MyAds() {
     const [ads, setAds] = useState<AdInterface[]>([]);
 
     return (
-        <div className='mainMyAds'>
+        <div className='mainHelp'>
             <TopWithArrow link='/profile' />
-            <div className='myAdsContent'>
-                <div className='myAdsContentHeader'>
-                    <p className='myAdsContentHeaderTitle'>Помощь</p>
+            <div className='myHelpContent'>
+                <div className='myHelpContentHeader'>
+                    <p className='myHelpContentHeaderTitle'>Помощь</p>
                 </div>
                 
-                <div className='myAdsContentHeader'>
-                    <div className='myAdsContentHeaderTitle'>
+                <div className='myHelpContentHeader'>
+                    <div className='myHelpContentHeaderTitle'>
                         <div className='QR'>
                             <img src={QRVK}  width=" 122" height=" 120"></img>
-                            <a href='https://vk.com/moitovarish' className='linkNoUnderlineCreate' >
-                                <button className='myAdsContentHeaderButton'>Перейти в группу Вк</button>
+                            <a href='https://vk.com/moitovarish' className='linkNolineCreate' >
+                                <button className='myHelpContentHeaderButton'>Перейти в группу Вк</button>
                             </a>
                         </div>
                     </div>
@@ -43,8 +43,8 @@ export default function MyAds() {
                         <p><b>тут_наш_адрес_почты@почта.ру</b></p>
                     </div>
 
-                 <div className='myAdsEmptyColumn'>
-                    <img src={mySupGirl} alt="No chats illustration" className='myAdsEmptyImage' />
+                 <div className='myHelpEmptyColumn'>
+                    <img src={mySupGirl} alt="No chats illustration" className='myHelpEmptyImage' />
                 </div>
             </div>
         </div>
