@@ -15,7 +15,7 @@ export default function Favourites() {
     }, []);
 
     const load = async () => {
-        setFavourites([{ id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1 }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }, { id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }]);
+        setFavourites([{ id: 123, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1 }, { id: 1234, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }, { id: 12345, title: 'Ищу соседа в район Чистые пруды', subtitle: 'Квартира найдена, двушка, 50 кв.м., современный ремонт', cover: adAppartment1  }]);
     };
 
     return (
@@ -30,7 +30,7 @@ export default function Favourites() {
                     <img src={favouritesMan} alt="No chats illustration" className='favouritesEmptyImage' />
                 </div>
                 : <div className='favouritesColumn'>
-                    {favourites.map(item => <FavouriteItem id={item.id} title={item.title} subtitle={item.subtitle} cover={item.cover} />)}
+                    {favourites.map(item => <FavouriteItem key={item.id} id={item.id} title={item.title} subtitle={item.subtitle} cover={item.cover} />)}
                 </div>}
         </div>
     );
