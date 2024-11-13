@@ -4,7 +4,10 @@
     gap: 12px;
     align-items: center;
     justify-content: center;
-    width: 195px;
+    /* width: 195px; */
+    width: 100%;
+
+    /* padding: 10px 26px; */
 }
 
 .myAds {
@@ -13,21 +16,30 @@
     width: 100%;
     background: #FFE8AE;
     border-radius: 16px;
-    padding: 10px 0px 10px;
     position: relative;
-    /*min-height: calc(100vh - 177px);*/
-    width: 330px;
-    height: 138px;
+    max-width: calc(100vw - 60px);
+    width: 100%;
+    /* overflow: hidden; */
+    /* height: 138px; */
     gap: 11px;
-    padding-left: 26px;
-    padding-right: 26px;
+    /* padding-left: 26px;
+    padding-right: 26px; */
+    padding: 17px 26px 10px 26px;
+
 }
 
 .Buttons {
     display: flex;
     align-items: center;
-    gap: 11px;
+    justify-content: space-between;
+    /* flex-wrap: wrap; */
+    overflow-y: scroll;
+    gap: 4px;
 }
+
+.Buttons::-webkit-scrollbar {
+    width: 0;
+  }
 
 .linkNolineCreate {
     text-decoration: none;
@@ -99,4 +111,8 @@
 .mainText {
     font-size: 16px;
     color: #8E3B00;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

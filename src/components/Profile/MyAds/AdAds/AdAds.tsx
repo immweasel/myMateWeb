@@ -35,7 +35,9 @@ export default function AdAds({ id }: AdCardInterface) {
                 <>
                     <div className='myAds'>
                         <div className='textAds'>Ищу соседа в район Чистые <p>пруды</p></div>
-                        <div className='mainText'>Квартира найдена, двушка, 50 кв.м., совр...</div>
+                        {/* <div className='mainText'>Квартира найдена, двушка, 50 кв.м., совр...</div> */}
+                        <div className='mainText'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, temporibus deserunt impedit quisquam dolorum pariatur mollitia! A cumque excepturi impedit ipsum ducimus non quisquam quidem. Maiores sapiente repudiandae soluta quo.e</div>
+
                         <div className='Buttons'>
                             <a href='#' className='linkNolineCreate' >
                                 <button className='changeButton'>Изменить</button>

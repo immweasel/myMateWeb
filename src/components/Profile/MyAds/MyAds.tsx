@@ -17,7 +17,7 @@ interface AdInterface {
 export default function MyAds() {
 
     const [ads, setAds] = useState<AdInterface[]>([]);
-    
+
     const [sortOpen, setSortOpen] = useState<boolean>(false);
     const [search, setSearch] = useState<string>('');
 
@@ -41,7 +41,9 @@ export default function MyAds() {
     }, [sortOpen]);
 
     const load = async () => {
-        setAds([{ id: '1', title: '345' }, { id: '2', title: '456' }, { id: '3', title: '567' }, { id: '4', title: '678' }, { id: '5', title: '890' },{ id: '6', title: '0000' }]);
+        setAds([{ id: '1', title: '345' }, { id: '2', title: '456' }, { id: '3', title: '567' }, { id: '4', title: '678' }, { id: '5', title: '890' }, { id: '6', title: '0000' }]);
+        // setAds([]);
+
     };
 
     const filteredAds = search
@@ -59,27 +61,16 @@ export default function MyAds() {
                         <button className='myAdsContentHeaderButton'>Создать</button>
                     </Link>
                 </div>
-                {ads.length === 0
-                    ? <img src={myAdsMan2} alt="No chats illustration" className='myAdsEmptyImage' />
-                    : <></>}
-            </div>
-            
-            {filteredAds.length === 0 ? (
-                <div className='myAdsEmptyColumn'>
-                    <div className='myAdsEmptyTextBlock'>
-                        <img src={myAdsWindow} alt="No chats window" />
-                        <p className='myAdsEmptyText'>Объявлений нет. Создадим новое?</p>
+                {filteredAds.length !== 0 ? (
+                    <div className='adList'>
+                        {filteredAds.map((item: AdInterface) => (
+                            <AdAds key={item.id} id={item.id} />
+                        ))}
                     </div>
-                    <img src={myAdsMan} alt="No chats illustration" className='myAdsEmptyImage' />
-                </div>
-            ) : (
-                <div className='adList'>
-                    {filteredAds.map((item: AdInterface) => (
-                        <AdAds key={item.id} id={item.id} />
-                    ))}
-                </div>
-            )
-            }
+                ) : <img src={myAdsMan2} alt="No chats illustration" className='myAdsEmptyImage' />} 
+                {/* filteredAds - отсортированный массив либо просто массив, поэтому можно сократить код, как показано выше */}
+                {/* в будущем стоит переписать код, так как будет загрузка данных и будет не круто, если пользователь увидит, что у него нет объявлений, хотя они просто не успели загрузиться! */}
+            </div>
         </div>
     );
 };
