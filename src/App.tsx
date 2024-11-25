@@ -17,6 +17,7 @@ import Balance from "./components/Profile/Balance/Balance.jsx";
 import ReturnSup from "./components/Profile/ReturnSup.jsx";
 import Promotion from "./components/Profile/Promotion/Promotion";
 import Payment from "./components/Profile/Payment/Payment";
+import Prodvigate from "./components/Profile/Prodvigate/Prodvigate";
 
 /*
 import Support from "./components/Ads/Ads";
@@ -54,6 +55,7 @@ function App() {
           <Route path="/profile/returnsup" element={<ReturnSup Obr="" formLink={"https://forms.yandex.ru/u/6723b7ad73cee78f6876e5eb/"}/>} />
         
           <Route path="/profile/promotion" element={<Promotion />} />
+          <Route path="/profile/prodvigate" element={<Prodvigate />} />
           <Route path="/profile/payment" element={<Payment />} />
           {/*  <Route path="/profile/support" element={<Support />} />
           пока не ясно куда ведет
