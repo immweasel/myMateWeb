@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Chats from "./components/Chats/Chats";
 import Main from "./components/Main/Main";
+import Auth from "./components/Auth/Auth";
 import Favourites from "./components/Favourites/Favourites";
 import Ads from "./components/Ads/Ads";
 import MyAds from "./components/Profile/MyAds/MyAds";
@@ -43,6 +44,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/auth" element={<Auth />} />
           <Route path="/favourites" element={<Favourites />} />
           <Route path="/ads" element={<Ads />} />
           <Route path="/chats" element={<Chats />} />

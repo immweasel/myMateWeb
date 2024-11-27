@@ -4,65 +4,34 @@ import CustomInputLogin from "./CustomInputLogin/CustomInputLogin";
 import { ReactComponent as EmailSvg } from "../../assets/icons/email.svg";
 import { ReactComponent as PasswordSvg } from "../../assets/icons/password.svg";
 import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";
+import Logo from "../../assets/images/logo.png";
+import authT from "../../assets/images/authText.png";
 
-function Auth() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
-
+export default function Auth() {
   return (
-    <div>
-      <div className="logo-wrapper">
-        <LogoSvg className="logo" />
-      </div>
-      <div className="container">
-        <form onSubmit={handleSubmit}>
-          <div className="email-input">
-            <EmailSvg />
-            <CustomInputLogin
-              type="email"
-              value={email}
-              placeholder="Логин"
-              onChange={setEmail}
-            />
-          </div>
-
-          <div className="password-input">
-            <PasswordSvg />
-            <CustomInputLogin
-              type="password"
-              value={password}
-              placeholder="Пароль"
-              onChange={setPassword}
-            />
-          </div>
-
-          <a href="#" className="forgot-password">
-            Забыли пароль?
+    <div className="mainAuth">
+      <img src={Logo}  width="295" height="120.55"></img>
+      <p className='nameAuth'>Найди своего <p className="nameAuth">идеального соседа</p></p>
+      <img src={authT}  width="331" height="370"></img>
+      <div className="AuthDown">
+        <p className='OpisAuth'>Нажимая на кнопку "Начать", вы соглашаетесь с</p>
+        
+        <div className="texti">
+          <a href='https://dev.vk.com/ru/user-agreement'>
+              <p className='OpisAuth'>правилами использования сервиса</p>
           </a>
+          <div className='OpisAuth'>и</div>
+          <a href='https://dev.vk.com/ru/privacy-policy'>
+              <div className='OpisAuth'>правилами защиты</div>
+          </a>
+        </div>
 
-          <button type="submit" className="login">
-            Отправить
-          </button>
-
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <a href="#" className="registration">
-              Зарегестрироватся
-            </a>
-          </div>
-        </form>
+        <a href='https://dev.vk.com/ru/privacy-policy'>
+            <p className='OpisAuth'>информации о пользователях сервиса</p>
+        </a>
+        <button className='AuthButton'>Начать</button>
       </div>
     </div>
   );
-}
-
-export default Auth;
+};
