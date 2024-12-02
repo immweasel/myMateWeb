@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import "./Auth.css";
-import CustomInputLogin from "./CustomInputLogin/CustomInputLogin";
-import { ReactComponent as EmailSvg } from "../../assets/icons/email.svg";
-import { ReactComponent as PasswordSvg } from "../../assets/icons/password.svg";
-import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";
+// import CustomInputLogin from "./CustomInputLogin/CustomInputLogin";
+// import { ReactComponent as EmailSvg } from "../../assets/icons/email.svg";
+// import { ReactComponent as PasswordSvg } from "../../assets/icons/password.svg";
+// import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";
 import Logo from "../../assets/images/logo.png";
 import authT from "../../assets/images/authText.png";
-
 
 export default function Auth() {
   return (
@@ -18,16 +17,16 @@ export default function Auth() {
         <p className='OpisAuth'>Нажимая на кнопку "Начать", вы соглашаетесь с</p>
         
         <div className="texti">
-          <a href='https://dev.vk.com/ru/user-agreement'>
+          <a href='https://dev.vk.com/ru/user-agreement' className="Link">
               <p className='OpisAuth'>правилами использования сервиса</p>
           </a>
           <div className='OpisAuth'>и</div>
-          <a href='https://dev.vk.com/ru/privacy-policy'>
+          <a href='https://dev.vk.com/ru/privacy-policy' className="Link">
               <div className='OpisAuth'>правилами защиты</div>
           </a>
         </div>
 
-        <a href='https://dev.vk.com/ru/privacy-policy'>
+        <a href='https://dev.vk.com/ru/privacy-policy' className="Link">
             <p className='OpisAuth'>информации о пользователях сервиса</p>
         </a>
         <button className='AuthButton'>Начать</button>
