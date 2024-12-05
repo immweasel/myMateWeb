@@ -29,8 +29,8 @@ export default function Auth() {
         <a href='https://dev.vk.com/ru/privacy-policy' className="Link">
             <p className='OpisAuth'>информации о пользователях сервиса</p>
         </a>
-        <button className='AuthButton'>Начать</button>
       </div>
+        <button className='AuthButton'>Начать</button>
     </div>
   );
 };
