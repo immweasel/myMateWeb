@@ -6,8 +6,16 @@ import "./Auth.css";
 // import { ReactComponent as LogoSvg } from "../../assets/icons/logo.svg";
 import Logo from "../../assets/images/logo.png";
 import authT from "../../assets/images/authText.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Auth() {
+
+    const navigate = useNavigate(); // Для смены маршрута
+  
+    const handleStart = () => {
+      navigate("/"); // Перейти на страницу "/Main"
+    };
+
   return (
     <div className="mainAuth">
       <img src={Logo}  width="295" height="120.55"></img>
@@ -30,7 +38,7 @@ export default function Auth() {
             <p className='OpisAuth'>информации о пользователях сервиса</p>
         </a>
       </div>
-        <button className='AuthButton'>Начать</button>
+        <button className='AuthButton' onClick={handleStart}>Начать</button>
     </div>
   );
 };
