@@ -85,6 +85,7 @@
     display: flex;
     align-items: center;
     gap: 24px;
+    margin-bottom: 15px;
 }
 
 
@@ -93,7 +94,7 @@
     width: 100%;
     background: #FFE8AE;
     border-radius: 16px;
-    padding: 5px 0;
+    /* padding: 5px 0; */
     /*min-height: calc(100vh - 177px);*/
     width: 169px;
     height: 344px;
@@ -142,7 +143,6 @@
     margin: auto 0px;
 }
 
-
 .myProdvigateContentButton {
     width: 362px; 
     height: 36px;
@@ -174,7 +174,5 @@
 
 
 .linkNolineCreate {
-
-    text-decoration: none;
-
+    text-decoration: none !important;
 }

@@ -43,7 +43,7 @@ export default function AdAds({ id }: AdCardInterface) {
                                 <button className='changeButton'>Изменить</button>
                             </a>
                             <a href='#' className='linkNolineCreate' >
-                                <Link to='/profile/prodvigate'>
+                                <Link to='/profile/prodvigate' className='linkNolineCreate'>
                                     <button className='prodvigateButton'>Продвинуть</button>
                                 </Link>
                             </a>

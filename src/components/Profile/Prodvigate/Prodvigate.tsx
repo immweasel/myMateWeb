@@ -88,7 +88,7 @@ export default function Prodvigate() {
                     </div>
                 </div>
                 
-                <Link to='/profile/payment'>
+                <Link to='/profile/payment' className='linkNolineCreate'>
                     <button className='myProdvigateContentButton'>Оплатить</button>
                 </Link>
                 
