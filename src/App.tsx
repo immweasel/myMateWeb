@@ -1,7 +1,7 @@
 import Profile from "./components/Profile/Profile";
 import profileImg from "./assets/images/profileImg.png";
 import Navigation from "./components/Navigation/Navigation";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Chats from "./components/Chats/Chats";
 import Main from "./components/Main/Main";
 import Auth from "./components/Auth/Auth";
@@ -36,40 +36,51 @@ const userData = {
   cntFavourites: "12"
 };
 
+function Layout() {
+  const location = useLocation();
+  const hideNavigation = location.pathname === '/Auth';
+
+  return (
+    <>
+      {!hideNavigation && <Navigation />}
+
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/favourites" element={<Favourites />} />
+        <Route path="/ads" element={<Ads />} />
+        <Route path="/chats" element={<Chats />} />
+        <Route path="/profile" element={<Profile userImg={userData.profileImg} userName={userData.userName} userCity={userData.userCity} userDescription={userData.userDescription} cntAds={userData.cntAds} cntMoney={userData.cntMoney} cntFavourites={userData.cntFavourites} />} />
+        <Route path="/profile/myAds" element={<MyAds />} />
+
+
+        <Route path="/profile/balance" element={<Balance money="" />} />
+        <Route path="/profile/support" element={<Supporting />} />
+        <Route path="/profile/returnsup" element={<ReturnSup Obr="" formLink={"https://forms.yandex.ru/u/6723b7ad73cee78f6876e5eb/"}/>} />
+
+        <Route path="/profile/promotion" element={<Promotion />} />
+        <Route path="/profile/prodvigate" element={<Prodvigate />} />
+        <Route path="/profile/payment" element={<Payment />} />
+        {/*  <Route path="/profile/support" element={<Support />} />
+        пока не ясно куда ведет
+        <Route path="/profile/themeColor" element={<ThemeColor />} />
+        <Route path="/profile/logOut" element={<LogOut />} />
+        */}
+
+        <Route path="/ad/:id" element={<Ad />} />
+        <Route path="/profile/myAds/createAds" element={<CreateAds />} />
+        <Route path="/profile/personalData" element={<PersonalData />} />
+      </Routes>
+    </>
+  )
+}
+
 function App() {
+
+
   return (
     <Router>
-      <div>
-        <Navigation />
-
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/favourites" element={<Favourites />} />
-          <Route path="/ads" element={<Ads />} />
-          <Route path="/chats" element={<Chats />} />
-          <Route path="/profile" element={<Profile userImg={userData.profileImg} userName={userData.userName} userCity={userData.userCity} userDescription={userData.userDescription} cntAds={userData.cntAds} cntMoney={userData.cntMoney} cntFavourites={userData.cntFavourites} />} />
-          <Route path="/profile/myAds" element={<MyAds />} />
-
-
-          <Route path="/profile/balance" element={<Balance money="" />} />
-          <Route path="/profile/support" element={<Supporting />} />
-          <Route path="/profile/returnsup" element={<ReturnSup Obr="" formLink={"https://forms.yandex.ru/u/6723b7ad73cee78f6876e5eb/"}/>} />
-        
-          <Route path="/profile/promotion" element={<Promotion />} />
-          <Route path="/profile/prodvigate" element={<Prodvigate />} />
-          <Route path="/profile/payment" element={<Payment />} />
-          {/*  <Route path="/profile/support" element={<Support />} />
-          пока не ясно куда ведет
-          <Route path="/profile/themeColor" element={<ThemeColor />} />
-          <Route path="/profile/logOut" element={<LogOut />} />
-          */}
-
-          <Route path="/ad/:id" element={<Ad />} />
-          <Route path="/profile/myAds/createAds" element={<CreateAds />} />
-          <Route path="/profile/personalData" element={<PersonalData />} />
-        </Routes>
-      </div>
+      <Layout />
     </Router>
   );
 }
